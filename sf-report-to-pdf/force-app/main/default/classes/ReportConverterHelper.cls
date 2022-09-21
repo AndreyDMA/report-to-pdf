@@ -15,13 +15,15 @@ public with sharing class ReportConverterHelper {
             Reports.ReportFactWithDetails factDetails = (Reports.ReportFactWithDetails) factMap.get(
                 factMapKey
             );
-            Map<String, String> row = new Map<String, String>();
+            
             for (Reports.ReportDetailRow detailRow : factDetails.getRows()) {
+                Map<String, String> row = new Map<String, String>();
+                
                 for (Integer i = 0; i < colNames.size(); i++) {
                     row.put(colNames[i], detailRow.getDataCells()[i].getLabel());
                 }
+                report.add(row);
             }
-            report.add(row);
         }
 
         return JSON.serialize(report);
