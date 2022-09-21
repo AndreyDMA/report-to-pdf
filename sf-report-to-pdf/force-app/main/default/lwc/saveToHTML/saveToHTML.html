@@ -1,0 +1,23 @@
+<template>
+    <div if:false={reportId} class="slds-p-left_small">
+        <div>
+            {LABELS.SELECT_REPORT}
+        </div>
+        <lightning-button
+            label="Get ID"
+            onclick={getReportId}
+        ></lightning-button>
+    </div>  
+    <div if:true={reportId} class="slds-p-left_small">
+        <lightning-radio-group
+            class="slds-p-bottom_small"
+            name="radioGroup"
+            label="Formatting"
+            options={options}
+            value={view}
+            type="radio"
+            onchange={changeView}
+        ></lightning-radio-group>
+        <c-converter report-id={reportId} view={view}></c-converter>
+    </div>  
+</template>
