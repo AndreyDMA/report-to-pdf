@@ -5,22 +5,17 @@ export default class Converter extends LightningElement {
     @api reportId;
     @api view;
     @api target;
-    report;
-
-    connectedCallback() {
-        console.log(this.reportId);
-        console.log(this.view);
-        console.log(this.target);
-    }
+    reportData;
+    reportDescr;
 
     doConvert() {
         retrieveReport({reportId : this.reportId})
         .then(result => {
-            console.log(result);
-            this.report = JSON.parse(result);
-            console.log(this.report);
+            this.reportData = JSON.parse(result.data);
+            this.reportDescr = JSON.parse(result.description);
+            console.log(this.reportData);
+            console.log(this.reportDescr);
         })
         .catch(error => {console.log(error.message)})
-         
     }
 }
