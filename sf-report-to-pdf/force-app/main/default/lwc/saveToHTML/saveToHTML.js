@@ -1,5 +1,5 @@
 import { LightningElement } from 'lwc';
-import retrieveFromURI from './saveToHTMLHelper.js';
+import { retrieveFromURI } from './saveToHTMLHelper.js';
 
 const LIST_VIEW = "List view";
 const TAB_VIEW = "Tabular view";

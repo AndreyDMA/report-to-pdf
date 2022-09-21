@@ -7,3 +7,5 @@ function retrieveFromURI(baseURI) {
     }
     return null;
 }
+
+export {retrieveFromURI};
