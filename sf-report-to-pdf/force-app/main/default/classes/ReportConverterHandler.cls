@@ -1,24 +1,24 @@
 public with sharing class ReportConverterHandler {
-    public static void retrieveReport(Id reportId) {
+    public static String retrieveReport(Id reportId) {
         Report rep = [
             SELECT Name, Description, Format
             FROM Report
             WHERE Id = :reportId
         ];
         ReportConverterHelper helper = new ReportConverterHelper(reportId);
-
+        String result;
         switch on rep.Format {
             when 'Tabular' {
-                helper.runTabularReport();
+                return helper.readTabularReport();
             }
             when 'Summary' {
-                helper.runSummaryReport();
+                return helper.readSummaryReport();
             }
             when 'Matrix' {
-                helper.runMatrixReport();
+                return helper.readMatrixReport();
             }
             when 'Multiblock' {
-                helper.runMultiblockReport();
+                return helper.readMultiblockReport();
             }
             when else {
                 throw new AuraHandledException('Something went wrong');
