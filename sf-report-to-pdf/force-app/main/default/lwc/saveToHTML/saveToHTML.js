@@ -1,4 +1,5 @@
 import { LightningElement } from 'lwc';
+import retrieveFromURI from './saveToHTMLHelper.js';
 
 const LIST_VIEW = "List view";
 const TAB_VIEW = "Tabular view";
@@ -17,7 +18,6 @@ export default class SaveToHTML extends LightningElement {
     connectedCallback() {
         if (!this.reportId) {
             this.getReportId();
-            
         }
     }
 
@@ -33,16 +33,6 @@ export default class SaveToHTML extends LightningElement {
     }
 
     getReportId() {
-        let url = document.baseURI;
-        const address = url.split('/');
-        for (let i = 0; i < address.length; i++) {
-            if (address[i] === 'r' && address[i+1] === 'Report') {
-                this.reportId = address[i+2];
-                break;
-            } else {
-                this.reportId = null;
-            }
-        }
-        console.log(this.reportId);
+        this.reportId = retrieveFromURI(document.baseURI);
     }
 }
