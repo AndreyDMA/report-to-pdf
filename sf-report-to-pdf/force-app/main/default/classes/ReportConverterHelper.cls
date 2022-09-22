@@ -18,8 +18,8 @@ public with sharing class ReportConverterHelper {
             
             for (Reports.ReportDetailRow detailRow : factDetails.getRows()) {
                 Map<String, String> row = new Map<String, String>();
-                
-                for (Integer i = 0; i < colNames.size(); i++) {
+
+                for (Integer i = colNames.size() - 1; i >= 0; i--) { // data is retrieved backwards
                     row.put(colNames[i], detailRow.getDataCells()[i].getLabel());
                 }
                 report.add(row);
