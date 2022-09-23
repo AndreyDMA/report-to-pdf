@@ -92,6 +92,24 @@ function composeTableRow(elem, count) {
     </tr>
     `;
 }
+
+function wrapHTML(body) {
+    return `
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/design-system/2.5.0/styles/salesforce-lightning-design-system.min.css"
+            />
+        </head>
+        <body>
+        ${body}
+        </body>
+    </html>
+    `;
+}
+
 function composeListHTML(reportData) {}
 
-export { composeHeaderHTML, composeTableHTML, composeListHTML };
+export { composeHeaderHTML, composeTableHTML, composeListHTML, wrapHTML };
