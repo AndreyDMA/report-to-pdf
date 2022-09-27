@@ -1,7 +1,7 @@
 import { LightningElement, api } from 'lwc';
 import { composeHeaderHTML, composeTableHTML, composeListHTML } from './converterHelper.js';
 import retrieveReport from '@salesforce/apex/ReportConverterController.retrieveReport';
-import SystemModstamp from '@salesforce/schema/Account.SystemModstamp';
+import setId from '@salesforce/apex/ReportConverterController.setId';
 
 export default class Converter extends LightningElement {
     @api reportId;
@@ -12,8 +12,9 @@ export default class Converter extends LightningElement {
     reportHTML='';
 
     doConvert() {
-        this.loadData();
-        this.composeData();
+        this.transferId();
+        // this.loadData();
+        // this.composeData();
     }
 
     loadData() {
@@ -21,6 +22,14 @@ export default class Converter extends LightningElement {
         .then(result => {
             this.reportData = JSON.parse(result.data);
             this.reportDescr = JSON.parse(result.description);
+        })
+        .catch(error => {console.log(error.message)})
+    }
+
+    transferId() {
+        setId({repId : this.reportId})
+        .then(result => {
+            console.log('success');
         })
         .catch(error => {console.log(error.message)})
     }

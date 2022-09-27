@@ -1,0 +1,11 @@
+<apex:page Controller="ReportConverterPage1Cntrl">
+    <apex:form>
+        <apex:inputtext value="{!reportId}"/>
+        <apex:pageblock >
+            <apex:commandlink action="{!goNext}" target="_blank">
+                <apex:commandButton value="Next"/>
+            </apex:commandLink>
+        </apex:pageblock>
+    </apex:form>
+    
+</apex:page>

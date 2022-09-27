@@ -1,13 +1,16 @@
 public with sharing class ReportConverterHelper {
     private Reports.ReportResults reportData;
+    public List<String> colNames;
+    public List<List<String>> repData;
 
     public ReportConverterHelper(Id reportId) {
         this.reportData = Reports.ReportManager.runReport(reportId, true);
+        this.colNames = ReportConverterUtils.getColumnNames(reportData);
+        this.repData = readTabularReport();
     }
 
-    public String readTabularReport() {
-        List<Map<String, String>> report = new List<Map<String, String>>();
-        List<String> colNames = ReportConverterUtils.getColumnNames(reportData);
+    private List<List<String>> readTabularReport() {
+        List<List<String>> report = new List<List<String>>();
 
         Map<String, Reports.ReportFact> factMap = reportData.getFactMap();
 
@@ -15,18 +18,19 @@ public with sharing class ReportConverterHelper {
             Reports.ReportFactWithDetails factDetails = (Reports.ReportFactWithDetails) factMap.get(
                 factMapKey
             );
-            
+            Integer count = 1;
             for (Reports.ReportDetailRow detailRow : factDetails.getRows()) {
-                Map<String, String> row = new Map<String, String>();
-
-                for (Integer i = colNames.size() - 1; i >= 0; i--) { // data is retrieved backwards
-                    row.put(colNames[i], detailRow.getDataCells()[i].getLabel());
+                List<String> row = new List<String>();
+                row.add(String.valueOf(count));
+                for (Reports.ReportDataCell elem : detailRow.getDataCells()) {
+                    row.add(elem.getLabel());
                 }
+                count++;
                 report.add(row);
             }
         }
 
-        return JSON.serialize(report);
+        return report;
     }
 
     public String readSummaryReport() {

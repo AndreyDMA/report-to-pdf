@@ -14,32 +14,21 @@ public with sharing class ReportConverterHandler {
     public ReportWrap retrieveReport() {
         switch on rep.Format {
             when 'Tabular' {
-                return composeWrappedReport(helper.readTabularReport());
+                return composeWrappedReport(helper.repData);
             }
-            when 'Summary' {
-                return composeWrappedReport(helper.readSummaryReport());
-            }
-            when 'Matrix' {
-                return composeWrappedReport(helper.readMatrixReport());
-            }
-            when 'Multiblock' {
-                return composeWrappedReport(helper.readMultiblockReport());
-            }
+           
             when else {
                 throw new AuraHandledException('Something went wrong');
             }
         }
     }
 
-    private ReportWrap composeWrappedReport(String repData) {
+    private ReportWrap composeWrappedReport(List<List<String>> repData) {
         ReportWrap wrapped = new ReportWrap();
-        wrapped.description = JSON.serialize(
-            new Map<String, String>{
-                'name' => rep.Name,
-                'description' => rep.description
-            }
-        );
+        wrapped.description = rep.description;
+        wrapped.name = rep.Name;
         wrapped.data = repData;
+        wrapped.columns = helper.colNames;
         return wrapped;
     }
 }
