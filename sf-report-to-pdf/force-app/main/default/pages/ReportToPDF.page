@@ -1,35 +1,40 @@
 <apex:page Controller="ReportConverterPage2Cntrl" renderAs="pdf">
+    <apex:variable var="size" value="{!pageSize}" />
     <apex:stylesheet value="{!URLFOR($Resource.ReportConverterRecources,'css/styles.css')}" />
-    <h2>
-        <span class="">{!report.name}</span>
-    </h2>
-    <p class="">{!report.description}</p>
-    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+    <apex:stylesheet value="{!u}"
+    />
+    <body>
+        <h2>
+            <span class="">{!report.name}</span>
+        </h2>
+        <p class="">{!report.description}</p>
+        <table width="100%" class="table-bordered">
 
-        <thead>
-            <tr class="slds-line-height_reset">
-                <th class="" scope="col">
-                    <div class="slds-truncate" title="Сount"></div>
-                </th>
-                <apex:repeat value="{!report.columns}" var="column">
+            <thead>
+                <tr class="slds-line-height_reset">
                     <th class="" scope="col">
-                        <div class="slds-truncate">{!column}</div>
+                        <div class="slds-truncate" title="Сount"></div>
                     </th>
-                </apex:repeat>
-            </tr>
-        </thead>
-
-        <tbody>
-            <apex:repeat value="{!report.data}" var="row">
-                <tr class="slds-hint-parent">
-                    <apex:repeat value="{!row}" var="elem">
-                        <td>
-                            <div class="slds-truncate">{!elem}</div>
-                        </td>
+                    <apex:repeat value="{!report.columns}" var="column">
+                        <th class="" scope="col">
+                            <div class="slds-truncate">{!column}</div>
+                        </th>
                     </apex:repeat>
                 </tr>
-            </apex:repeat>
-        </tbody>
+            </thead>
 
-    </table>
+            <tbody>
+                <apex:repeat value="{!report.data}" var="row">
+                    <tr class="slds-hint-parent">
+                        <apex:repeat value="{!row}" var="elem">
+                            <td>
+                                <div class="slds-truncate">{!elem}</div>
+                            </td>
+                        </apex:repeat>
+                    </tr>
+                </apex:repeat>
+            </tbody>
+
+        </table>
+</body>
 </apex:page>

@@ -1,25 +1,34 @@
 public with sharing class ReportConverterPage2Cntrl {
-    public String reportId {get; set;}
-    public ReportWrap report {get; set;}
-    public Integer count;
+    public ReportWrap report { get; set; }
+    public String pageSize { get; set; }
 
     public ReportConverterPage2Cntrl() {
-        reportId = apexpages.currentPage().getParameters().get('reportId').escapeHtml4();
-        report = retrieveReport(reportId);
-        count = 0;
+        report = retrieveReport(apexpages.currentPage()
+        .getParameters()
+        .get('reportId')
+        .escapeHtml4());
+
+        pageSize = composeResourceUrl(apexpages.currentPage()
+        .getParameters()
+        .get('size')
+        .escapeHtml4());
     }
 
-    private ReportWrap retrieveReport(String reportId){
+    private ReportWrap retrieveReport(String reportId) {
         try {
-            ReportConverterHandler handler = new ReportConverterHandler(reportId);
+            ReportConverterHandler handler = new ReportConverterHandler(
+                reportId
+            );
             return handler.retrieveReport();
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
     }
 
-    public Integer getCount() {
-        count++;
-        return count;
+    private String composeResourceUrl(String target) {
+        String address = PageReference.forResource('ReportConverterRecources').getUrl();
+        address = address.subString(0, address.indexOf('?'));
+        address += '/css/' + target + '.css';
+        return address;
     }
 }
