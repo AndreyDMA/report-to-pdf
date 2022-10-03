@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>*</members>
+        <members>ReportConverterHandler</members>
+        <members>ReportConverterHelper</members>
+        <members>ReportConverterPage1Cntrl</members>
+        <members>ReportConverterPage2Cntrl</members>
+        <members>ReportConverterUtils</members>
+        <members>ReportWrap</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexComponent</name>
-    </types>
-    <types>
-        <members>*</members>
+        <members>ReportToPDF_settings</members>
+        <members>ReportToPDF</members>
         <name>ApexPage</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexTestSuite</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexTrigger</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>AuraDefinitionBundle</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>LightningComponentBundle</name>
-    </types>
-    <types>
-        <members>*</members>
+        <members>ReportConverterRecources</members>
         <name>StaticResource</name>
+    </types>
+    <types>
+        <members>ReportConverterSetting__mdt</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>ReportConverterSetting__mdt.Available_Formats__c</members>
+        <members>ReportConverterSetting__mdt.Favourite_Format__c</members>
+        <name>CustomField</name>
     </types>
     <version>55.0</version>
 </Package>
