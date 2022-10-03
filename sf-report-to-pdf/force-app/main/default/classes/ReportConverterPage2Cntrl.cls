@@ -10,7 +10,7 @@ public with sharing class ReportConverterPage2Cntrl {
 
         pageSize = composeResourceUrl(apexpages.currentPage()
         .getParameters()
-        .get('size')
+        .get('format')
         .escapeHtml4());
     }
 

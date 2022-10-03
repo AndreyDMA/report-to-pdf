@@ -1,7 +1,6 @@
 <apex:page Controller="ReportConverterPage2Cntrl" renderAs="pdf">
-    <apex:variable var="size" value="{!pageSize}" />
     <apex:stylesheet value="{!URLFOR($Resource.ReportConverterRecources,'css/styles.css')}" />
-    <apex:stylesheet value="{!u}"
+    <apex:stylesheet value="{!pageSize}"
     />
     <body>
         <h2>
