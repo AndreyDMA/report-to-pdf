@@ -8,7 +8,7 @@ public with sharing class ReportConverterPage1Cntrl {
     public ReportConverterPage1Cntrl() {
         settings = ReportConverterSettings__mdt.getInstance('Page_Settings');
         formats = retrieveFormats(settings.Available_Formats__c);
-        format = retrieveFormat(settings.Favourite_Format__c);
+        format = retrieveFormat(settings.Default_Format__c);
     }
 
     public Boolean getIsError() {
@@ -41,9 +41,23 @@ public with sharing class ReportConverterPage1Cntrl {
         return result;
     }
 
-    private String retrieveFormat(String favouriteFormat) {
-        return favouriteFormat != null
-            ? favouriteFormat
-            : formats[0] + '_landscape';
+    private String retrieveFormat(String defaultFormat) {
+        String result = formats[0] + '_landscape';
+
+        if (defaultFormat == null) {
+            return result;
+        }
+
+        List<String> parts = defaultFormat.split('_');
+        if (
+            parts.size() != 2 ||
+            !formats.contains(parts[0]) ||
+            (parts[1] != 'landscape' &&
+            parts[1] != 'portrait')
+        ) {
+            return result;
+        }
+
+        return defaultFormat;
     }
 }
