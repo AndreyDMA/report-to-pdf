@@ -24,7 +24,7 @@
     </types>
     <types>
         <members>ReportConverterSettings__mdt.Available_Formats__c</members>
-        <members>ReportConverterSettings__mdt.Favourite_Format__c</members>
+        <members>ReportConverterSettings__mdt.Default_Format__c</members>
         <name>CustomField</name>
     </types>
     <version>55.0</version>

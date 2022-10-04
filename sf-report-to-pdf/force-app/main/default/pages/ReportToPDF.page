@@ -2,6 +2,7 @@
     <apex:stylesheet value="{!URLFOR($Resource.ReportConverterRecources,'css/styles.css')}" />
     <apex:stylesheet value="{!pageSize}"
     />
+    
     <body>
         <h2>
             <span class="">{!report.name}</span>
