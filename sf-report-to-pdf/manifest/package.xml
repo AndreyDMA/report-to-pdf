@@ -19,12 +19,12 @@
         <name>StaticResource</name>
     </types>
     <types>
-        <members>ReportConverterSetting__mdt</members>
+        <members>ReportConverterSettings__mdt</members>
         <name>CustomObject</name>
     </types>
     <types>
-        <members>ReportConverterSetting__mdt.Available_Formats__c</members>
-        <members>ReportConverterSetting__mdt.Favourite_Format__c</members>
+        <members>ReportConverterSettings__mdt.Available_Formats__c</members>
+        <members>ReportConverterSettings__mdt.Favourite_Format__c</members>
         <name>CustomField</name>
     </types>
     <version>55.0</version>
