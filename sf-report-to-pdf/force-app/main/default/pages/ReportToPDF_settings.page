@@ -4,7 +4,7 @@
 
     <apex:form style="{!if (isError==true, 'display:none', '')}">
         <apex:actionFunction name="setFormat" reRender="view">
-            <apex:param name="format" value="" assignTo="{!format}"/>
+            <apex:param name="format" value="" assignTo="{!format}" />
         </apex:actionFunction>
 
         <script type="text/javascript">
@@ -13,13 +13,14 @@
                 checkboxes.forEach(chb => {
                     if (chb.value !== value) {
                         chb.checked = false;
-                    } 
+                    }
                 });
                 setFormat(value);
             }
         </script>
 
         <apex:slds />
+
         <label class="slds-form-element__label slds-form-element__legend">
             Report ID
             <abbr class="slds-required" title="required"> *</abbr>
@@ -28,40 +29,41 @@
 
         <fieldset class="slds-form-element  slds-m-top_small">
             <legend class="slds-form-element__legend slds-form-element__label">Page Settings</legend>
-            <div class="format-container">
-                <span class="slds-radio">
-                    <input class="checkbox" type="radio" id="radio-1" value="A4_landscape" checked="true" onclick="selectFormat(this.value), selectFormat"
-                    />
-                    <label class="slds-radio__label" for="radio-1">
-                        <span class="slds-radio_faux"></span>
-                        <span class="slds-form-element__label landscape">A4</span>
-                    </label>
-                </span>
-                <span class="slds-radio">
-                    <input class="checkbox" type="radio" id="radio-2" value="A4_portrait" onclick="selectFormat(this.value)" />
-                    <label class="slds-radio__label" for="radio-2">
-                        <span class="slds-radio_faux"></span>
-                        <span class="slds-form-element__label portrait">A4</span>
-                    </label>
-                </span>
-            </div>
-            <div class=" format-container">
-                <span class="slds-radio">
-                    <input class="checkbox" type="radio" id="radio-3" value="A3_landscape" onclick="selectFormat(this.value)" />
-                    <label class="slds-radio__label" for="radio-3">
-                        <span class="slds-radio_faux"></span>
-                        <span class="slds-form-element__label landscape">A3</span>
-                    </label>
-                </span>
-                <span class="slds-radio">
-                    <input class="checkbox" type="radio" id="radio-4" value="A3_portrait" onclick="selectFormat(this.value)" />
-                    <label class="slds-radio__label" for="radio-4">
-                        <span class="slds-radio_faux"></span>
-                        <span class="slds-form-element__label portrait">A3</span>
-                    </label>
-                </span>
-            </div>
+
+            <apex:repeat value="{!formats}" var="f" id="formats">
+                <div class="format-container">
+                    <span class="slds-radio">
+                        <input class="checkbox" type="radio" id="radio-1_{!f}" value="{!f}_landscape" onclick="selectFormat(this.value)" />
+                        <label class="slds-radio__label" for="radio-1_{!f}">
+                            <span class="slds-radio_faux"></span>
+                            <span class="slds-form-element__label landscape">{!f}</span>
+                        </label>
+                    </span>
+                    <span class="slds-radio">
+                        <input class="checkbox" type="radio" id="radio-2_{!f}" value="{!f}_portrait" onclick="selectFormat(this.value)" />
+                        <label class="slds-radio__label" for="radio-2_{!f}">
+                            <span class="slds-radio_faux"></span>
+                            <span class="slds-form-element__label portrait">{!f}</span>
+                        </label>
+                    </span>
+                </div>
+
+            </apex:repeat>
+
         </fieldset>
+
+        <script type="text/javascript">
+            (function () {
+                const checkboxes = document.querySelectorAll(".checkbox");
+                checkboxes.forEach(chb => {
+                    if (chb.value !== "{!format}") {
+                        chb.checked = false;
+                    } else {
+                        chb.checked = true;
+                    }
+                });
+            })();
+        </script>
 
         <apex:pageblock>
             <apex:commandlink action="{!goNext}" target="_blank">
