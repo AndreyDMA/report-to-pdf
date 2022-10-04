@@ -16,9 +16,8 @@ public with sharing class ReportConverterHandler {
             when 'Tabular' {
                 return composeWrappedReport(helper.repData);
             }
-           
             when else {
-                throw new AuraHandledException('Something went wrong');
+                return null;
             }
         }
     }

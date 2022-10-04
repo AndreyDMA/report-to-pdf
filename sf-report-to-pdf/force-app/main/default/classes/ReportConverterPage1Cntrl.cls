@@ -11,9 +11,6 @@ public with sharing class ReportConverterPage1Cntrl {
         format = retrieveFormat(settings.Favourite_Format__c);
     }
 
-    public String getFormat() {
-        return 'A4_landscape';
-    }
     public Boolean getIsError() {
         return isError;
     }

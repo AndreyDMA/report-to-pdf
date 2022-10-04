@@ -47,7 +47,6 @@
                         </label>
                     </span>
                 </div>
-
             </apex:repeat>
 
         </fieldset>

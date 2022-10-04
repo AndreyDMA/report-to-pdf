@@ -19,7 +19,8 @@ public with sharing class ReportConverterPage2Cntrl {
             ReportConverterHandler handler = new ReportConverterHandler(
                 reportId
             );
-            return handler.retrieveReport();
+            ReportWrap report = handler.retrieveReport();
+            return report != null ? report : new ReportWrap('Sorry this type of Report can not be converted...');
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
