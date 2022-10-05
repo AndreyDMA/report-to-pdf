@@ -1,23 +1,10 @@
 <apex:page Controller="ReportConverterPage1Cntrl" standardStylesheets="false" id="form-id">
     <apex:stylesheet value="{!URLFOR($Resource.ReportConverterRecources,'css/styles.css')}" />
 
-
     <apex:form style="{!if (isError==true, 'display:none', '')}">
         <apex:actionFunction name="setFormat" reRender="view">
             <apex:param name="format" value="" assignTo="{!format}" />
         </apex:actionFunction>
-
-        <script type="text/javascript">
-            function selectFormat(value) {
-                const checkboxes = document.querySelectorAll(".checkbox");
-                checkboxes.forEach(chb => {
-                    if (chb.value !== value) {
-                        chb.checked = false;
-                    }
-                });
-                setFormat(value);
-            }
-        </script>
 
         <apex:slds />
 
@@ -51,24 +38,14 @@
 
         </fieldset>
 
-        <script type="text/javascript">
-            (function () {
-                const checkboxes = document.querySelectorAll(".checkbox");
-                checkboxes.forEach(chb => {
-                    if (chb.value !== "{!format}") {
-                        chb.checked = false;
-                    } else {
-                        chb.checked = true;
-                    }
-                });
-            })();
-        </script>
+
 
         <apex:pageblock>
             <apex:commandlink action="{!goNext}" target="_blank">
                 <button class="slds-button slds-button_brand slds-button_stretch slds-m-top_small">Apply</button>
             </apex:commandLink>
         </apex:pageblock>
+
     </apex:form>
 
     <div class="error-page" style="{!if (isError==false, 'display:none', '')}">
@@ -78,4 +55,28 @@
             <br/>Please check your ID!</div>
         <apex:pageMessages/>
     </div>
+
+    <script type="text/javascript">
+        function selectFormat(value) {
+            const checkboxes = document.querySelectorAll(".checkbox");
+            checkboxes.forEach(chb => {
+                if (chb.value !== value) {
+                    chb.checked = false;
+                }
+            });
+            setFormat(value);
+        }
+
+        (function () {
+                const checkboxes = document.querySelectorAll(".checkbox");
+                checkboxes.forEach(chb => {
+                    if (chb.value !== "{!format}") {
+                        chb.checked = false;
+                    } else {
+                        chb.checked = true;
+                    }
+                });
+            })();
+    </script>
+
 </apex:page>
