@@ -14,6 +14,10 @@
         <members>ReportToPDF</members>
         <name>ApexPage</name>
     </types>
+     <types>
+        <members>Report_Converter</members>
+        <name>CustomApplication</name>
+    </types>
     <types>
         <members>ReportConverterRecources</members>
         <name>StaticResource</name>
