@@ -1,18 +1,12 @@
 public with sharing class ReportConverterHelper {
-    private Reports.ReportResults reportData;
-    public List<String> colNames;
-    public List<List<String>> repData;
+    public static List<String> colNames;
 
-    public ReportConverterHelper(Id reportId) {
-        this.reportData = Reports.ReportManager.runReport(reportId, true);
-        this.colNames = ReportConverterUtils.getColumnNames(reportData);
-        this.repData = readTabularReport();
-    }
-
-    private List<List<String>> readTabularReport() {
+    public static List<List<String>> readTabularReport(Id reportId) {
+        Reports.ReportResults repResult = Reports.ReportManager.runReport(reportId, true);
+        colNames = ReportConverterUtils.getColumnNames(repResult);
         List<List<String>> report = new List<List<String>>();
 
-        Map<String, Reports.ReportFact> factMap = reportData.getFactMap();
+        Map<String, Reports.ReportFact> factMap = repResult.getFactMap();
 
         for (String factMapKey : factMap.keySet()) {
             Reports.ReportFactWithDetails factDetails = (Reports.ReportFactWithDetails) factMap.get(
@@ -32,5 +26,4 @@ public with sharing class ReportConverterHelper {
 
         return report;
     }
-
 }

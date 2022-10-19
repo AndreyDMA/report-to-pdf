@@ -10,7 +10,7 @@ public with sharing class ReportConverterPage2Cntrl {
                 .escapeHtml4()
         );
 
-        pageSize = composeResourceUrl(
+        pageSize = ReportConverterUtils.composeResourceUrl(
             apexpages.currentPage().getParameters().get('format').escapeHtml4()
         );
     }
@@ -35,18 +35,6 @@ public with sharing class ReportConverterPage2Cntrl {
                 new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage())
             );
         }
-    }
-
-    private String composeResourceUrl(String target) {
-        String address =
-            URL.getSalesforceBaseUrl().toExternalForm() +
-            '' +
-            PageReference.forResource('ReportConverterRecources').getUrl(); 
-        if (!Test.isRunningTest()) {
-            address = address.subString(0, address.indexOf('?'));
-        }
-        address += '/css/' + target + '.css';
-
-        return address;
+        return null;
     }
 }
