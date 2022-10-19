@@ -19,8 +19,9 @@
         <name>CustomApplication</name>
     </types>
     <types>
-        <members>ReportConverterRecources</members>
-        <name>StaticResource</name>
+        <members>Error_To_Convert_Report</members>
+        <members>Error_To_find_Report_By_ID</members>
+        <name>CustomLabels</name>
     </types>
     <types>
         <members>ReportConverterSettings__mdt</members>
@@ -34,6 +35,14 @@
     <types>
         <members>ReportConverterSettings__mdt.Page_Settings</members>
         <name>CustomMetadata</name>
+    </types>
+    <types>
+        <members>ReportConverterTestReports/Test_Tabular_Report</members>
+        <name>Report</name>
+    </types>
+    <types>
+        <members>ReportConverterRecources</members>
+        <name>StaticResource</name>
     </types>
     <version>55.0</version>
 </Package>

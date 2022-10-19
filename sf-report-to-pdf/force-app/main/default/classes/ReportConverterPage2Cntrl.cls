@@ -25,7 +25,7 @@ public with sharing class ReportConverterPage2Cntrl {
                 ApexPages.addMessage(
                     new ApexPages.Message(
                         ApexPages.Severity.ERROR,
-                        'Sorry this type of Report can not be converted...'
+                        System.Label.Error_To_Convert_Report
                     )
                 );
             }
@@ -41,7 +41,7 @@ public with sharing class ReportConverterPage2Cntrl {
         String address =
             URL.getSalesforceBaseUrl().toExternalForm() +
             '' +
-            PageReference.forResource('ReportConverterRecources').getUrl(); //PageReference.forResource('ReportConverterRecources').getUrl();
+            PageReference.forResource('ReportConverterRecources').getUrl(); 
         if (!Test.isRunningTest()) {
             address = address.subString(0, address.indexOf('?'));
         }

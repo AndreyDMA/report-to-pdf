@@ -47,8 +47,7 @@
     <div class="error-page" style="{!if (isError==false, 'display:none', '')}">
         <apex:image url="{!URLFOR($Resource.ReportConverterRecources, 'img/error_icon.svg')}" width="150" height="150" alt="Error"
         />
-        <div class="error-text">Sorry we can not find your Report...
-            <br/>Please check your ID!</div>
+        <apex:outputText styleClass="error-text" escape="false" value="{!$Label.Error_To_find_Report_By_ID}"/>
         <apex:pageMessages/>
     </div>
 

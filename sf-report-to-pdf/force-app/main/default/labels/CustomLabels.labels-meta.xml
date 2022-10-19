@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Error_To_Convert_Report</fullName>
+        <categories>Report Converter</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error To Convert Report</shortDescription>
+        <value>Sorry this type of Report can not be converted...</value>
+    </labels>
+    <labels>
+        <fullName>Error_To_find_Report_By_ID</fullName>
+        <categories>Report Converter</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error To find Report By ID</shortDescription>
+        <value>Sorry we can not find your Report...&lt;br /&gt;Please check your ID!</value>
+    </labels>
+</CustomLabels>
