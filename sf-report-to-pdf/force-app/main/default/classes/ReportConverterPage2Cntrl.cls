@@ -3,15 +3,16 @@ public with sharing class ReportConverterPage2Cntrl {
     public String pageSize { get; set; }
 
     public ReportConverterPage2Cntrl() {
-        report = retrieveReport(apexpages.currentPage()
-        .getParameters()
-        .get('reportId')
-        .escapeHtml4());
+        report = retrieveReport(
+            apexpages.currentPage()
+                .getParameters()
+                .get('reportId')
+                .escapeHtml4()
+        );
 
-        pageSize = composeResourceUrl(apexpages.currentPage()
-        .getParameters()
-        .get('format')
-        .escapeHtml4());
+        pageSize = composeResourceUrl(
+            apexpages.currentPage().getParameters().get('format').escapeHtml4()
+        );
     }
 
     private ReportWrap retrieveReport(String reportId) {
@@ -20,16 +21,32 @@ public with sharing class ReportConverterPage2Cntrl {
                 reportId
             );
             ReportWrap report = handler.retrieveReport();
-            return report != null ? report : new ReportWrap('Sorry this type of Report can not be converted...');
+            if (report == null) {
+                ApexPages.addMessage(
+                    new ApexPages.Message(
+                        ApexPages.Severity.ERROR,
+                        'Sorry this type of Report can not be converted...'
+                    )
+                );
+            }
+            return report;
         } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+            ApexPages.addMessage(
+                new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage())
+            );
         }
     }
 
     private String composeResourceUrl(String target) {
-        String address = PageReference.forResource('ReportConverterRecources').getUrl();
-        address = address.subString(0, address.indexOf('?'));
+        String address =
+            URL.getSalesforceBaseUrl().toExternalForm() +
+            '' +
+            PageReference.forResource('ReportConverterRecources').getUrl(); //PageReference.forResource('ReportConverterRecources').getUrl();
+        if (!Test.isRunningTest()) {
+            address = address.subString(0, address.indexOf('?'));
+        }
         address += '/css/' + target + '.css';
+
         return address;
     }
 }

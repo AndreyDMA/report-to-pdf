@@ -10,10 +10,4 @@ public with sharing class ReportWrap {
 
     @AuraEnabled
     public List<String> columns { get; set; }
-
-    public ReportWrap() {}
-
-    public ReportWrap(String descr) {
-        description = descr;
-    }
 }

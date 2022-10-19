@@ -3,7 +3,8 @@
     <apex:stylesheet value="{!pageSize}"
     />
     
-    <body>
+    <apex:pageMessages id="errmsg"></apex:pageMessages>
+    <body style="{!if (report==null, 'display:none', '')}">
         <h2>
             <span class="">{!report.name}</span>
         </h2>
