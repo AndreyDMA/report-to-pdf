@@ -35,17 +35,13 @@
                     </span>
                 </div>
             </apex:repeat>
-
         </fieldset>
-
-
 
         <apex:pageblock>
             <apex:commandlink action="{!goNext}" target="_blank">
                 <button class="slds-button slds-button_brand slds-button_stretch slds-m-top_small">Apply</button>
             </apex:commandLink>
         </apex:pageblock>
-
     </apex:form>
 
     <div class="error-page" style="{!if (isError==false, 'display:none', '')}">
@@ -78,5 +74,4 @@
                 });
             })();
     </script>
-
 </apex:page>

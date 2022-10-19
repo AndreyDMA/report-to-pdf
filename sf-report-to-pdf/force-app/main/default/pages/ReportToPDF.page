@@ -1,16 +1,15 @@
 <apex:page Controller="ReportConverterPage2Cntrl" renderAs="pdf">
     <apex:stylesheet value="{!URLFOR($Resource.ReportConverterRecources,'css/styles.css')}" />
-    <apex:stylesheet value="{!pageSize}"
-    />
-    
+    <apex:stylesheet value="{!pageSize}" />
     <apex:pageMessages id="errmsg"></apex:pageMessages>
+
     <body style="{!if (report==null, 'display:none', '')}">
         <h2>
             <span class="">{!report.name}</span>
         </h2>
         <p class="">{!report.description}</p>
-        <table width="100%" class="table-bordered">
 
+        <table width="100%" class="table-bordered">
             <thead>
                 <tr class="slds-line-height_reset">
                     <th class="" scope="col">
@@ -23,7 +22,6 @@
                     </apex:repeat>
                 </tr>
             </thead>
-
             <tbody>
                 <apex:repeat value="{!report.data}" var="row">
                     <tr class="slds-hint-parent">
@@ -35,7 +33,6 @@
                     </tr>
                 </apex:repeat>
             </tbody>
-
         </table>
-</body>
+    </body>
 </apex:page>

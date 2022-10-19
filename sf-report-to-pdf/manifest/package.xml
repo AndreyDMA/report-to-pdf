@@ -31,5 +31,9 @@
         <members>ReportConverterSettings__mdt.Default_Format__c</members>
         <name>CustomField</name>
     </types>
+    <types>
+        <members>ReportConverterSettings__mdt.Page_Settings</members>
+        <name>CustomMetadata</name>
+    </types>
     <version>55.0</version>
 </Package>
