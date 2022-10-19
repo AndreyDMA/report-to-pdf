@@ -37,16 +37,10 @@ public with sharing class ReportConverterPage2CntrlTest {
 
         Test.setCurrentPage(pr);
 
-        Boolean hasError = false;
-
-        try {
-            ReportConverterPage2Cntrl controller = new ReportConverterPage2Cntrl();
-        } catch (Exception e) {
-            hasError = ApexPages.hasMessages(ApexPages.Severity.ERROR);
-        }
+        ReportConverterPage2Cntrl controller = new ReportConverterPage2Cntrl();
 
         Test.stopTest();
 
-        System.assertEquals(true, hasError, 'Error was not detected');
+        System.assertEquals(true, ApexPages.hasMessages(ApexPages.Severity.ERROR), 'Error was not detected');
     }
 }
