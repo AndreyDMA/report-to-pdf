@@ -9,7 +9,7 @@
         </h2>
         <p class="">{!report.description}</p>
 
-        <table width="100%" class="table-bordered">
+        <table style="{!if (report.type!='Tabular', 'display:none', '')}" width="100%" class="table-bordered">
             <thead>
                 <tr class="slds-line-height_reset">
                     <th class="" scope="col">

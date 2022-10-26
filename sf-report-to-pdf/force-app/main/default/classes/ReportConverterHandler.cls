@@ -12,7 +12,10 @@ public with sharing class ReportConverterHandler {
     public ReportWrap retrieveReport() {
         switch on rep.Format {
             when 'Tabular' {
-                return composeWrappedReport();
+                return composeWrappedReport(ReportConverterHelper.readTabularReport(rep.Id));
+            }
+            when 'Summary' {
+                return composeWrappedReport(ReportConverterHelper.readSummaryReport(rep.Id));
             }
             when else {
                 return null;
@@ -20,12 +23,13 @@ public with sharing class ReportConverterHandler {
         }
     }
 
-    private ReportWrap composeWrappedReport() {
+    private ReportWrap composeWrappedReport(List<List<String>> repData) {
         ReportWrap wrapped = new ReportWrap();
         wrapped.description = rep.description;
         wrapped.name = rep.Name;
-        wrapped.data = ReportConverterHelper.readTabularReport(rep.Id);
+        wrapped.data = repData;
         wrapped.columns = ReportConverterHelper.colNames;
+        wrapped.type = rep.Format;
         return wrapped;
     }
 }
