@@ -4,6 +4,9 @@ public with sharing class ReportWrap {
     
     @AuraEnabled
     public List<List<String>> data { get; set; }
+
+    @AuraEnabled
+    public Map<String, List<List<String>>> sumData { get; set; }
     
     @AuraEnabled
     public String description { get; set; }

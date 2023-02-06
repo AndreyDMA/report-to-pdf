@@ -3,11 +3,17 @@ public with sharing class ReportConverterUtils {
         Reports.ReportResults reportData
     ) {
         Reports.ReportExtendedMetadata rmd = reportData.getReportExtendedMetadata();
-        Map<String, Reports.DetailColumn> colMap = rmd.getDetailColumnInfo();
+        Map<String, Reports.GroupingColumn> grColMap = rmd.getGroupingColumnInfo();
+        Map<String, Reports.DetailColumn> dColMap = rmd.getDetailColumnInfo();
+        
         List<String> colNames = new List<String>();
 
-        for (String key : colMap.KeySet()) {
-            colNames.add(colMap.get(key).getLabel());
+        for (String key : grColMap.KeySet()) {
+            colNames.add(grColMap.get(key).getLabel());
+        }
+
+        for (String key : dColMap.KeySet()) {
+            colNames.add(dColMap.get(key).getLabel());
         }
 
         return colNames;
